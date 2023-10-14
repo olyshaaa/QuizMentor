@@ -3,13 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { AuthProvider } from './firebase/auth'
+import Signup from './pages/Signup'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
 
   return (
     <>
-      <h1><AuthProvider /></h1>
+      <div className='App'>
+        <Outlet />
+      </div>
 
     </>
   )
