@@ -2,26 +2,55 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react'
 import {auth} from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
+import {getDatabase, ref, set} from 'firebase/database'
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
 
   const navigate = useNavigate()
+
+
+  function generateRandomNumber() {
+    return Math.floor(Math.random()*900000) + 100000
+  }
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       console.log(userCredential)
       const user = userCredential.user
+
+      const customUid = '700' + generateRandomNumber();
+
+      const userdata = {
+        email: user.email,
+        uid: customUid,
+        username: username
+      }
+
+      if (user) {
+        const db = getDatabase();
+
+        const userRef = ref(db, `users/${customUid}`);
+
+        await set(userRef, userdata);
+      }
+
+
+
       localStorage.setItem('token', user.accessToken)
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('user', JSON.stringify(userdata))
       navigate("/")
 
     } catch (error) {
       console.log(error)
       if(error.code === "auth/weak-password"){
         alert("Password should be at least 6 characters")
+      } else if(error.code === "auth/email-already-in-use"){
+        alert("This email is already in use.")
       }
       else{
         alert("An error occurred while logging in. We are already working on fixing the problem.")
@@ -32,6 +61,11 @@ const Signup = () => {
     <div>
       <h1>Signup Page</h1>
       <form onSubmit={handleSubmit} className='signup-form'>
+        <input type="text" placeholder='Your name/nickname'
+        required
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        />
         <input type="email"
         placeholder='Your email'
         required

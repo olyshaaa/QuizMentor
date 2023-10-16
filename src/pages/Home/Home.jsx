@@ -5,6 +5,13 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const navigate = useNavigate()
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const username = user && user.username;
+
+  console.log("username: " + username)
+
   const handleLogout = async () =>{
     await signOut(auth)
     localStorage.removeItem('token')
@@ -13,7 +20,7 @@ const Home = () => {
   }
   return (
     <div>
-      <h1>Welcome!</h1>
+      <h1>Welcome, {username}!</h1>
       <button onClick={handleLogout}>Logout</button>
     </div>
   )

@@ -2,11 +2,15 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react'
 import {auth} from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
+import {getDatabase, ref, set} from 'firebase/database'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
+
+  const database = getDatabase()
+  
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
