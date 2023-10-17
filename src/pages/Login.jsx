@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import {auth} from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
 import {getDatabase, ref, set} from 'firebase/database'
+import style from './style.module.scss'
+import { get, child } from 'firebase/database';
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -10,31 +12,48 @@ const Login = () => {
   const navigate = useNavigate()
 
   const database = getDatabase()
-  
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
-      console.log(userCredential)
       const user = userCredential.user
-      localStorage.setItem('token', user.accessToken)
-      localStorage.setItem('user', JSON.stringify(user))
-      navigate("/")
 
+      const userId = user.uid
+      const userRef = ref(getDatabase(), `users/${userId}`)
+
+      const usernameSnapshot = await get(userRef)
+
+      if (usernameSnapshot.exists()) {
+        const userData = usernameSnapshot.val()
+        const username = userData.username;
+        console.log("username from database", username);
+
+        localStorage.setItem('token', user.accessToken)
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('username', username)
+
+        navigate("/")
+      } else {
+        alert("The user was not found in the database.")
+      }
     } catch (error) {
       console.log(error)
-      if(error.code === "auth/invalid-login-credentials"){
-        alert("Invalid email or password. Check this information or make sure you are registered ")
-      }else{
-        alert("An error occurred while logging in. We are already working on fixing the problem.")
+      if (error.code === "auth/invalid-login-credentials") {
+        alert("Incorrect email address or password. Check this information or make sure you are registered.")
+      } else {
+        alert("An error occurred while logging in. We are already working to fix it.")
       }
     }
   }
+
+
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit} className='login-form'>
+    <div className={style.wrapper}>
+      <h2>QuizMentor</h2>
+      <h1 className={style.title}>Login</h1>
+      <form onSubmit={handleSubmit} className={style.signup}>
         <input type="email"
         placeholder='Your email'
         required

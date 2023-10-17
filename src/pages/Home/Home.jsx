@@ -2,15 +2,18 @@ import { signOut } from 'firebase/auth'
 import React from 'react'
 import { auth } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
+import Header from './Header/header'
+
+
 
 const Home = () => {
   const navigate = useNavigate()
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const username = localStorage.getItem('username');
 
-  const username = user && user.username;
 
-  console.log("username: " + username)
+  console.log("home username: " + username)
+
 
   const handleLogout = async () =>{
     await signOut(auth)
@@ -20,8 +23,7 @@ const Home = () => {
   }
   return (
     <div>
-      <h1>Welcome, {username}!</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <Header username={username} handleLogout={handleLogout} />
     </div>
   )
 }

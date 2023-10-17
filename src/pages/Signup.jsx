@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import {auth} from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
 import {getDatabase, ref, set} from 'firebase/database'
+import style from './style.module.scss'
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
 
   const navigate = useNavigate()
-
 
   function generateRandomNumber() {
     return Math.floor(Math.random()*900000) + 100000
@@ -23,7 +23,7 @@ const Signup = () => {
       console.log(userCredential)
       const user = userCredential.user
 
-      const customUid = '700' + generateRandomNumber();
+      const customUid = user.uid;
 
       const userdata = {
         email: user.email,
@@ -38,8 +38,6 @@ const Signup = () => {
 
         await set(userRef, userdata);
       }
-
-
 
       localStorage.setItem('token', user.accessToken)
       localStorage.setItem('user', JSON.stringify(userdata))
@@ -58,13 +56,15 @@ const Signup = () => {
     }
   }
   return (
-    <div>
-      <h1>Signup Page</h1>
-      <form onSubmit={handleSubmit} className='signup-form'>
+    <div className={style.wrapper}>
+      <h2>QuizMentor</h2>
+      <h1 className={style.title}>Signup</h1>
+      <form onSubmit={handleSubmit} className={style.signup}>
         <input type="text" placeholder='Your name/nickname'
         required
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+
         />
         <input type="email"
         placeholder='Your email'

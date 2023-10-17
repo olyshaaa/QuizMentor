@@ -1,0 +1,88 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lobster&family=Ubuntu&display=swap');
+html{
+    background-color: rgba(255, 255, 255, 0.619);
+}
+.wrapper{
+    border-radius: 15px;
+    /* box-shadow: 10px 10px #225E79; */
+    box-shadow:
+    0 0 0px rgba(0, 0, 0, 0.4), /* Тень по умолчанию */
+    10px 10px 20px rgba(0, 0, 0, 0.2), /* Дополнительная тень */
+    -10px -10px 20px rgba(0, 0, 0, 0.2); /* Дополнительная тень */
+    background-color: white;
+    padding: 50px;
+
+    h2{
+        font-family: 'Cinzel', serif;
+        letter-spacing: 9px;
+        color: #408AD2;
+        font-weight: 600;
+    }
+}
+  .title{
+    margin-top: 10px;
+    color: rgb(10, 4, 77);
+    letter-spacing: 3px;
+  }
+.signup{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Ubuntu', sans-serif;
+
+    input{
+        border: 2px solid #26527C;;
+        border-radius: 7.5px;
+        margin: 10px 0px;
+        height: 25px;
+        width: 400px;
+        padding: 2px;
+        transition: 0.3s;
+
+
+        &:focus{
+            border: 2px solid #FFC673;;
+            outline: none;
+        }
+
+
+        &::placeholder{
+            color: rgba(10, 4, 77, 0.524);
+
+        }
+    }
+
+    button{
+        border: none;
+        background-color: #FFC673;
+        border-radius: 7.5px;
+        color: rgba(10, 4, 77, 0.524);
+
+        transition: 0.47s;
+        height: 30px;
+        margin-top: 20px;
+
+        &:hover{
+            background-color: #FFAA33;
+        }
+    }
+
+
+
+
+}
+
+p{
+    color: rgba(10, 4, 77, 0.634);
+    cursor: default;
+
+    a{
+        color:  rgb(10, 4, 77);
+        text-decoration: none;
+        transition: 0.3s;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
