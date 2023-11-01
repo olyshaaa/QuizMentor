@@ -7,6 +7,7 @@ import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Protected from './components/Protected.jsx'
 import Home from './pages/Home/Home.jsx'
+import CreateBlock from './pages/createBlock/createBlock.jsx'
 
 
 const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
             <Route path='/' element={<Protected />} >
                 <Route path='/' index element={<Home />} />
             </Route>
+            <Route path='createBlock' element={<CreateBlock />}/>
 
         </Route>
     )

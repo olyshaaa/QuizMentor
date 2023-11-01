@@ -1,0 +1,12 @@
+.createBlockWrapper{
+    margin-top: 100px;
+    .title,
+    .description{
+        border: none;
+        border-bottom: 1px solid black;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import React from 'react'
 import { auth } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import Header from './Header/header'
+import Add from './Add'
 
 
 
@@ -24,6 +25,7 @@ const Home = () => {
   return (
     <div>
       <Header username={username} handleLogout={handleLogout} />
+      <Add />
     </div>
   )
 }

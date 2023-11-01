@@ -1,0 +1,58 @@
+header{
+    background-color: #F6F7FB;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+    h1{
+        font-family: 'Cinzel', serif;
+        letter-spacing: 9px;
+        color: #408AD2;
+        font-weight: 600;
+    }
+
+    .community{
+        text-align: none;
+        text-decoration: none;
+        color: black;
+        margin: 35px auto
+    }
+    display: flex;
+    .user{
+        right: 0;
+        margin: 25px auto;
+        .username{
+            /* #26527C */
+            border-radius: 9px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-size: 25px;
+            padding: 5px;
+
+            &:hover{
+                background-color: #dcdcdc ;
+            }
+        }
+    }
+
+
+    .optionmenu{
+        margin-top: 2px;
+        display: inline-block;
+        border: 1px solid #26527C;
+        border-radius: 5px;
+
+        p{
+            transition: 0.25s;
+            border-radius: 4px;
+            font-size: 25px;
+            &:hover{
+                background-color: #0C5AA6;
+                color: black;
+            }
+        }
+
+    }
+}
