@@ -8,5 +8,14 @@
         &:focus{
             outline: none;
         }
+
+        &::placeholder{
+            color: #DFDDE8;
+        }
+    }
+
+    .label{
+        display: block;
+        color: #939BB4;
     }
 }

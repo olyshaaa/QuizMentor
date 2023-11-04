@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAuth, signInWithPopup } from 'firebase/auth'; // Импортируйте signInWithPopup и getAuth из Firebase
-import { app, googleAuthProvider } from './firebase'; // Убедитесь, что googleAuthProvider импортирован из вашего файла firebase
+import { getAuth, signInWithPopup } from 'firebase/auth';
+import { app, googleAuthProvider } from './firebase';
 
 export const AuthProvider = () => {
     const auth = getAuth(app);
@@ -11,7 +11,7 @@ export const AuthProvider = () => {
             if (maybeUser != null) {
                 return setUser(maybeUser);
             }
-            signInWithPopup(auth, googleAuthProvider) // Используйте signInWithPopup здесь
+            signInWithPopup(auth, googleAuthProvider) 
                 .then(credentials => {
                     setUser(credentials.user);
                 })

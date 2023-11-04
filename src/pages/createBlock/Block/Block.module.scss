@@ -1,16 +1,21 @@
 .blockWrapper{
     background-color: #F6F7FB;
     padding: 50px;
+    padding-top: 10px;
     border-radius: 8px;
     width: 73%;
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    .form{
-        display: flex;
+    margin-top: 30px;
+
+    .index{
+        font-size: 20px;
+    }
+
         .term,
         .definition{
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 2px solid black;
             width: 500px;
             margin-right: 30px;
             font-size: 20px;
@@ -21,6 +26,9 @@
                 outline: none;
                 border-bottom: 2px solid #FFC673;;
             }
+            &::placeholder{
+                color: #939BB6;
+            }
         }
-    }
+
 }

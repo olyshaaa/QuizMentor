@@ -8,7 +8,6 @@ const Add = () => {
         <a href="/createBlock">
         <img className={style.addIcon} src={addIcon} alt="" />
         </a>
-
     </div>
   )
 }

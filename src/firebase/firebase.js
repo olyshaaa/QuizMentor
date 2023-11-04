@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider } from 'firebase/auth'; // Обратите внимание, что я добавил "GoogleAuthProvider" сюда.
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -15,7 +16,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const googleAuthProvider = new GoogleAuthProvider(); // Создание экземпляра GoogleAuthProvider
+const googleAuthProvider = new GoogleAuthProvider();
 const analytics = getAnalytics(app);
 export const auth = getAuth()
-export { app, getAuth, googleAuthProvider };
+const database = getDatabase(app);
+export { app, getAuth, googleAuthProvider, database };
