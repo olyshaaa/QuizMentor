@@ -3,7 +3,6 @@
     padding: 50px;
     padding-top: 10px;
     border-radius: 8px;
-    width: 73%;
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-top: 30px;
@@ -31,4 +30,15 @@
             }
         }
 
+}
+
+.addCard{
+    border: none;
+    background: transparent;
+    border-bottom: 7px solid #4D20C0;
+    transition: 0.3s;
+    &:hover{
+        color: #FFC673;
+        border-bottom: 10px solid #FFC673;
+    }
 }

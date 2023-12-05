@@ -7,6 +7,8 @@ import { push, ref } from 'firebase/database';
 import { auth } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
+/* авпва */
+import {getDatabase, set} from 'firebase/database'
 const CreateBlock = () => {
   const navigate = useNavigate()
 
@@ -42,7 +44,9 @@ const CreateBlock = () => {
       description: description,
       blocks: blocks
     }
-    const newBlockRef = push(ref(database, 'blocks'), newBlock);
+    const databaselocal = getDatabase()
+    const userref = ref(databaselocal, 'blocks')
+    set(userref, newBlock)
     console.log('Данные успешно сохранены в Firebase.');
   }
   return (

@@ -1,9 +1,16 @@
 .createBlockWrapper{
-    margin-top: 100px;
+    width: 80%;
+    margin: 100px auto;
+
+    .blockTitle{
+        font-size: 35px;
+        color: #2E3856;
+    }
     .title,
     .description{
         border: none;
-        border-bottom: 1px solid black;
+        border-bottom: 2px solid black;
+        width: 500px;
 
         &:focus{
             outline: none;

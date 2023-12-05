@@ -50,7 +50,7 @@ const Block = ({blocks, onBlockChange}) => {
             </div>
           ))}
             </div>
-        <button onClick={addCard}>Add a card</button>
+        <button className={style.addCard} onClick={addCard}>Add a card</button>
     </div>
   )
 }
