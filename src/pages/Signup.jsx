@@ -1,8 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react'
-import {auth} from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
-import {getDatabase, ref, set} from 'firebase/database'
 import style from './style.module.scss'
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -11,55 +8,42 @@ const Signup = () => {
 
   const navigate = useNavigate()
 
-  function generateRandomNumber() {
-    return Math.floor(Math.random()*900000) + 100000
-  }
 
-  const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) =>{
     e.preventDefault();
-    try {
+     try{
+      console.log('login:', username);
+console.log('password:', password);
+console.log('email:', email);
+      const response = await fetch("http://localhost:8080/newuser", {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          login: username,
+          password: password,
+          email: email,
+        }),
+      })
 
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      console.log(userCredential)
-      const user = userCredential.user
-
-      const customUid = user.uid;
-
-      const userdata = {
-        email: user.email,
-        uid: customUid,
-        username: username
+      if(response.ok){
+        console.log('REgistration successful')
+       localStorage.setItem('username', username)
+      navigate('/login')
+      }else{
+        console.error('REgistration failed')
       }
-
-      if (user) {
-        const db = getDatabase();
-
-        const userRef = ref(db, `users/${customUid}`);
-
-        await set(userRef, userdata);
-      }
-
-      localStorage.setItem('token', user.accessToken)
-      localStorage.setItem('user', JSON.stringify(userdata))
-      navigate("/")
-
-    } catch (error) {
-      console.log(error)
-      if(error.code === "auth/weak-password"){
-        alert("Password should be at least 6 characters")
-      } else if(error.code === "auth/email-already-in-use"){
-        alert("This email is already in use.")
-      }
-      else{
-        alert("An error occurred while logging in. We are already working on fixing the problem.")
-      }
+    }catch(e){
+      console.log('Registration failes:', e)
     }
+
   }
   return (
     <div className={style.wrapper}>
       <h2>QuizMentor</h2>
       <h1 className={style.title}>Signup</h1>
-      <form onSubmit={handleSubmit} className={style.signup}>
+      <form onSubmit={handleSubmit}  className={style.signup}>
         <input type="text" placeholder='Your name/nickname'
         required
         value={username}

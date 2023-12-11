@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Header from '../Home/Header/header'
 import style from './CreateBlock.module.scss'
 import Block from './Block/Block'
-import {database} from '../../firebase/firebase'
-import { push, ref } from 'firebase/database';
-import { auth } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
-/* авпва */
-import {getDatabase, set} from 'firebase/database'
+
 const CreateBlock = () => {
   const navigate = useNavigate()
 
@@ -19,7 +14,6 @@ const CreateBlock = () => {
 
 
   const handleLogout = async () =>{
-    await signOut(auth)
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     navigate("/login")

@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 const Protected = () => {
@@ -8,4 +8,4 @@ const Protected = () => {
   )
 }
 
-export default Protected
+export default Protected */

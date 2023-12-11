@@ -1,6 +1,4 @@
-import { signOut } from 'firebase/auth'
 import React from 'react'
-import { auth } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import Header from './Header/header'
 import Add from './Add'
@@ -17,9 +15,9 @@ const Home = () => {
 
 
   const handleLogout = async () =>{
-    await signOut(auth)
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    localStorage.removeItem('username')
     navigate("/login")
   }
   return (
