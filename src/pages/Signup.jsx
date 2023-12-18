@@ -1,20 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import style from './style.module.scss'
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
+  const [usernameInuse, setUsernameInuse] = useState(false)
 
   const navigate = useNavigate()
-
 
     const handleSubmit = async (e) =>{
     e.preventDefault();
      try{
-      console.log('login:', username);
-console.log('password:', password);
-console.log('email:', email);
       const response = await fetch("http://localhost:8080/newuser", {
         method: 'POST',
         headers:{
@@ -28,17 +25,18 @@ console.log('email:', email);
       })
 
       if(response.ok){
-        console.log('REgistration successful')
        localStorage.setItem('username', username)
       navigate('/login')
-      }else{
-        console.error('REgistration failed')
+      }else if (response.status === 409){
+        setUsernameInuse(true)
       }
     }catch(e){
       console.log('Registration failes:', e)
     }
 
+
   }
+
   return (
     <div className={style.wrapper}>
       <h2>QuizMentor</h2>
@@ -50,6 +48,7 @@ console.log('email:', email);
         onChange={(e) => setUsername(e.target.value)}
 
         />
+        <p className={usernameInuse ? style.usernameInUse : style.hidden}>this username is already in use</p>
         <input type="email"
         placeholder='Your email'
         required
