@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import style from './Block.module.scss'
 const Block = ({blocks, onBlockChange}) => {
   const [localBlocks, setLocalBlocks] = useState([
-    {title: ' ', definition: ' '}
+    {term: ' ', definition: ' '}
   ])
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Block = ({blocks, onBlockChange}) => {
 
   const handleTitleChange = (event, index) =>{
     const updatedBlocks = [...localBlocks]
-    updatedBlocks[index].title = event.target.value;
+    updatedBlocks[index].term = event.target.value;
     setLocalBlocks(updatedBlocks)
     onBlockChange(updatedBlocks);
   }
@@ -24,7 +24,7 @@ const Block = ({blocks, onBlockChange}) => {
   }
 
   const addCard = () =>{
-    const updatedBlocks = [...localBlocks, {title: '', definition: ''}]
+    const updatedBlocks = [...localBlocks, {term: '', definition: ''}]
     setLocalBlocks(updatedBlocks)
     onBlockChange(updatedBlocks);
   }

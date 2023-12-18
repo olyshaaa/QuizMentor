@@ -31,17 +31,29 @@ const CreateBlock = () => {
     setBlocks(newBlocks);
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault()
-    const newBlock = {
-      title: title,
-      description: description,
-      blocks: blocks
+    try{
+      const response = await fetch('http://localhost:8080/createModule',{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          //"Access-Control-Allow-Origin" : "*"
+        },
+        credentials: 'include', 
+        body: JSON.stringify({
+          moduleName: title,
+          cards: blocks,
+          authorUsername: username,
+        })
+      })
+      console.log("Success!")
+      console.log(JSON.stringify({moduleName: title, cards: blocks, authorUsername: username}));
+
+    }catch(e){
+      console.log("creating block failes: ", e)
     }
-    const databaselocal = getDatabase()
-    const userref = ref(databaselocal, 'blocks')
-    set(userref, newBlock)
-    console.log('Данные успешно сохранены в Firebase.');
+
   }
   return (
     <>
@@ -79,4 +91,4 @@ const CreateBlock = () => {
   )
 }
 
-export default CreateBlock
+export default CreateBlock;
