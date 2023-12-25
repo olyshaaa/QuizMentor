@@ -10,18 +10,21 @@ const CreateBlock = () => {
   const username = localStorage.getItem('username');
 
 
-  console.log("home username: " + username)
-
-
   const handleLogout = async () =>{
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    navigate("/login")
+    fetch("http://localhost:8080/logout", {
+      method: "POST",
+    }).then(response =>{
+      if(response.ok){
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        navigate("/login")
+      }
+    })
   }
 
   const [blocks, setBlocks] = useState([]);
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const navigateToHome = useNavigate()
 
   useEffect(()=>{
     console.log(blocks)
@@ -40,17 +43,18 @@ const CreateBlock = () => {
           'Content-Type': 'application/json',
           //"Access-Control-Allow-Origin" : "*"
         },
-        credentials: 'include', 
+        credentials: 'include',
         body: JSON.stringify({
           moduleName: title,
           cards: blocks,
           authorUsername: username,
         })
       })
-      console.log("Success!")
-      console.log(JSON.stringify({moduleName: title, cards: blocks, authorUsername: username}));
-
-    }catch(e){
+      if(response.ok){
+        navigateToHome("/home")
+      }
+    }
+    catch(e){
       console.log("creating block failes: ", e)
     }
 
@@ -84,7 +88,7 @@ const CreateBlock = () => {
             </div>
 
              <Block blocks={blocks} onBlockChange={handleBlockChange} />
-            <button>Submit</button>
+            <button type='submit'>Submit</button>
           </form>
         </div>
     </>

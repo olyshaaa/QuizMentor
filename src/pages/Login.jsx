@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import style from './style.module.scss'
 import Home from './Home/Home.jsx'
 const Login = () => {
-  const [email, setEmail] = useState('')
+  const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [incorrectMessage, setIncorrectMessage] = useState(false)
 
@@ -22,19 +22,16 @@ const Login = () => {
           "Access-Control-Allow-Origin" : "*"
         },
         body: new URLSearchParams({
-          login: email,
+          login: login,
           password: password,
         }),
       })
 
       if(response.ok){
-        console.log('Login successful')
-        console.log(email)
-        console.log(password)
+       localStorage.setItem("username", login)
         navigate("/home")
       }else if(response.status === 401){
         console.log('Login failes')
-        console.log(email)
         setIncorrectMessage(true)
       }
     }catch(e){
@@ -50,11 +47,11 @@ const Login = () => {
       <h1 className={style.title}>Login</h1>
       <form onSubmit={handleSubmit} className={style.signup}>
         <input type="text"
-        placeholder='Your email'
+        placeholder='Username'
         required
-        value={email}
+        value={login}
         name="username"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setLogin(e.target.value)}
         />
         <input type="password"
         placeholder='Your password'
@@ -69,6 +66,7 @@ const Login = () => {
       </form>
        <p>Need to Signup ? <Link to='/signup'>Create an account</Link></p>
        {errorParam && <p>Неправильное имя пользователя или пароль</p>}
+       <a href="http://localhost:8080/oauth2/authorization/google">login via google</a>
     </div>
   )
 }
