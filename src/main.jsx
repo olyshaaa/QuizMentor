@@ -7,6 +7,7 @@ import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Home from './pages/Home/Home.jsx'
 import CreateBlock from './pages/createBlock/createBlock.jsx'
+import CardDetail from './pages/CardDetail/CardDetail.jsx'
 
 
 const router = createBrowserRouter(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
             </Route> */}
             <Route path='home' element={<Home />} />
             <Route path='createBlock' element={<CreateBlock />}/>
-
+            <Route path='card/:moduleId' element={<CardDetail />} />
         </Route>
     )
 )

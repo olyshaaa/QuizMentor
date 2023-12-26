@@ -3,11 +3,13 @@ import style from "./ModuleCard.module.scss"
 import { useNavigate } from 'react-router-dom';
 
 
-const ModuleCard = ({moduleId,moduleName, cards}) =>{
+const ModuleCard = ({moduleId, moduleName, cards}) =>{
     const totalTerms = cards.filter(card => card.term !== '').length
     const navigateToModule = useNavigate()
     const handleClick = () =>{
-        navigateToModule(`/card/${moduleId}`)
+        navigateToModule(`/card/${moduleId}`, {
+            state: {moduleId, moduleName, cards }
+        })
     }
 
     return (

@@ -1,0 +1,26 @@
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+
+  .card.show-term {
+    transform: rotateY(0deg);
+    height: 350px;
+    width: 900px;
+    background: #fcfcfc;
+    border-radius: 0.25rem;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.16);
+  }
+
+  .card.show-definition {
+    transform: rotateY(180deg);
+    height: 350px;
+    width: 900px;
+    background-color: #fcfcfc;
+    border-radius: 0.25rem;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.16);
+  }
