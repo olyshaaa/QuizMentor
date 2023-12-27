@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import style from './header.module.scss'
 import Search from './search/search'
+import { useNavigate } from 'react-router-dom'
 
 const Header = ({username, handleLogout}) => {
   //showing the profile menu
   const [showOption, setShowOption] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogoClick = () =>{
+    navigate("/home")
+  }
 
   const handleUsernameClick = () =>{
     setShowOption(!showOption)
@@ -20,13 +26,14 @@ const Header = ({username, handleLogout}) => {
 
     usernameDom.addEventListener('selectstart', e=>{
     e.preventDefault()
+
   })
   }, [])
 
 
   return (
     <header>
-      <h1>QuizMentor</h1>
+      <h1 onClick={handleLogoClick}>QuizMentor</h1>
       <a href="" className={style.community}>Community</a>
       <Search />
       <div className={style.user}>

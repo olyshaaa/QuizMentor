@@ -29,6 +29,7 @@ const Login = () => {
 
       if(response.ok){
        localStorage.setItem("username", login)
+       localStorage.setItem('authenticated', 'true');
         navigate("/home")
       }else if(response.status === 401){
         console.log('Login failes')

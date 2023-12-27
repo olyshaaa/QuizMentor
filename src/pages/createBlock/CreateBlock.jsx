@@ -8,15 +8,12 @@ const CreateBlock = () => {
   const navigate = useNavigate()
 
   const username = localStorage.getItem('username');
-
-
   const handleLogout = async () =>{
     fetch("http://localhost:8080/logout", {
       method: "POST",
     }).then(response =>{
       if(response.ok){
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
+        localStorage.removeItem('username')
         navigate("/login")
       }
     })

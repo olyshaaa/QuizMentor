@@ -16,17 +16,21 @@ const Home = () => {
   const handleLogout = async () =>{
     fetch("http://localhost:8080/logout", {
       method: "POST",
+      headers: {
+        'Origin': 'http://localhost:5173',
+      },
     }).then(response =>{
       if(response.ok){
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        navigate("/login")
+        localStorage.removeItem('username')
+        localStorage.removeItem('authenticated');
+        navigate('/login')
       }
     })
+
   }
 
   useEffect(() => {
-    fetch("http://localhost:8080/modules/olyshaa")
+    fetch(`http://localhost:8080/modules/${username}`)
     .then(response => response.json())
     .then((data) => setData(data))
   }, [])

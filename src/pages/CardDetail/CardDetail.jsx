@@ -9,17 +9,14 @@ const CardDetail = () =>{
 
     const {moduleName, cards} = location.state
 
-    console.log('Module ID:', moduleId);
-  console.log('Module Name:', moduleName);
-  console.log('Cards:', cards);
+   
     const username = localStorage.getItem('username');
     const handleLogout = async () =>{
         fetch("http://localhost:8080/logout", {
           method: "POST",
         }).then(response =>{
           if(response.ok){
-            localStorage.removeItem('token')
-            localStorage.removeItem('user')
+            localStorage.removeItem('username')
             navigate("/login")
           }
         })
