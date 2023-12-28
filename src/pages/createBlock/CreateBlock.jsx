@@ -38,7 +38,6 @@ const CreateBlock = () => {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          //"Access-Control-Allow-Origin" : "*"
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -73,19 +72,8 @@ const CreateBlock = () => {
               />
               <label className={style.label} htmlFor="inputTitle">Title</label>
             </div>
-            <div>
-              <input
-                className={style.description}
-                 type="text"
-                 placeholder='Enter a description(not necessary)'
-                 onChange={(event) => setDescription(event.target.value)}
-                 id='inputDescription'
-              />
-              <label className={style.label} htmlFor="inputDescription">Description</label>
-            </div>
-
              <Block blocks={blocks} onBlockChange={handleBlockChange} />
-            <button type='submit'>Submit</button>
+            <button className={style.create} type='submit'>Create</button>
           </form>
         </div>
     </>

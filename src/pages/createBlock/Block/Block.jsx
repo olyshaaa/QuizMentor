@@ -51,7 +51,9 @@ const Block = ({blocks, onBlockChange}) => {
             </div>
           ))}
             </div>
-        <button className={style.addCard} onClick={addCard} type='button'>Add a card</button>
+            <div className={style.addCardWrapper}>
+              <button className={style.addCard} onClick={addCard} type='button'>+ Add a card</button>
+            </div>
     </div>
   )
 }

@@ -2,6 +2,22 @@
     width: 80%;
     margin: 100px auto;
 
+    .create{
+        border-radius: 0.55rem;
+        border: none;
+        background-color: #361293;
+        height: 50px;
+        width: 100px;
+        color: #fff;
+        font-weight: 500;
+        font-size: 15px;
+        float: right;
+        margin-top: 15px;
+        &:hover{
+            background-color: #5f33ce;
+        }
+    }
+
     .blockTitle{
         font-size: 35px;
         color: #2E3856;
