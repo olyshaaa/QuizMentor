@@ -19,7 +19,15 @@ header{
         text-align: none;
         text-decoration: none;
         color: black;
-        margin: 35px auto
+        margin: 35px auto;
+        letter-spacing: 1px;
+        color: #4D20C0;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover{
+            color: #724ad8;
+        }
     }
     display: flex;
     .user{

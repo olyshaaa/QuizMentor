@@ -9,6 +9,7 @@ import Home from './pages/Home/Home.jsx'
 import CreateBlock from './pages/createBlock/CreateBlock.jsx'
 import CardDetail from './pages/CardDetail/CardDetail.jsx'
 import Protected from './components/Protected.jsx'
+import Community from './pages/Community/Community.jsx'
 
 
 const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
                 <Route path='home' element={<Home />} exact/>
                 <Route path='createBlock' element={<CreateBlock />}/>
                 <Route path='card/:moduleId' element={<CardDetail />} />
+                <Route path='/community' element={<Community />}/>
             </Route>
         </Route>
     )

@@ -14,6 +14,7 @@ const CreateBlock = () => {
     }).then(response =>{
       if(response.ok){
         localStorage.removeItem('username')
+        localStorage.removeItem("authenticated")
         navigate("/login")
       }
     })
@@ -22,10 +23,17 @@ const CreateBlock = () => {
   const [blocks, setBlocks] = useState([]);
   const [title, setTitle] = useState('')
   const navigateToHome = useNavigate()
+  const [show, setShow] = useState(false)
 
   useEffect(()=>{
     console.log(blocks)
+    console.log(blocks.length)
   }, [blocks])
+
+  const messageStyle = {
+    display: show ? "block" : "none",
+    color: "#db0000",
+  }
 
   const handleBlockChange = (newBlocks) => {
     setBlocks(newBlocks);
@@ -33,6 +41,9 @@ const CreateBlock = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
+    if(blocks.length <=2){
+      setShow(true)
+    }else{
     try{
       const response = await fetch('http://localhost:8080/createModule',{
         method: "POST",
@@ -53,7 +64,7 @@ const CreateBlock = () => {
     catch(e){
       console.log("creating block failes: ", e)
     }
-
+  }
   }
   return (
     <>
@@ -74,6 +85,7 @@ const CreateBlock = () => {
             </div>
              <Block blocks={blocks} onBlockChange={handleBlockChange} />
             <button className={style.create} type='submit'>Create</button>
+            <p style={messageStyle}>You should add at leat 3 cards</p>
           </form>
         </div>
     </>

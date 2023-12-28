@@ -3,7 +3,7 @@ import style from "./ModuleCard.module.scss"
 import { useNavigate } from 'react-router-dom';
 
 
-const ModuleCard = ({moduleId, moduleName, cards}) =>{
+const ModuleCard = ({moduleId, moduleName, cards, authorUsername}) =>{
     const totalTerms = cards.filter(card => card.term !== '').length
     const navigateToModule = useNavigate()
     const handleClick = () =>{
@@ -16,6 +16,7 @@ const ModuleCard = ({moduleId, moduleName, cards}) =>{
         <div className={style.wrapper} onClick={handleClick}>
             <p className={style.moduleName}>{moduleName}</p>
             <p className={style.terms}>{totalTerms} terms</p>
+            {authorUsername && (<p className={style.author}>author: {authorUsername}</p>)}
         </div>
     )
 }

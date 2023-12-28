@@ -12,6 +12,10 @@ const Header = ({username, handleLogout}) => {
     navigate("/home")
   }
 
+  const handleCommunityClick = () =>{
+    navigate("/community")
+  }
+
   const handleUsernameClick = () =>{
     setShowOption(!showOption)
   }
@@ -34,7 +38,7 @@ const Header = ({username, handleLogout}) => {
   return (
     <header>
       <h1 onClick={handleLogoClick}>QuizMentor</h1>
-      <a href="" className={style.community}>Community</a>
+      <p onClick={handleCommunityClick} className={style.community}>Community</p>
       <Search />
       <div className={style.user}>
 

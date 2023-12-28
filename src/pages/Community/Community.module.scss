@@ -1,0 +1,26 @@
+.wrapper{
+    margin: 150px auto;
+    width: 80%;
+    .about{
+        .Title{
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+        .description{
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .modulesWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-left: 30px;
+
+        .moduleCardWrapper{
+            flex: 0 0 30%;
+            padding: 10px;
+        }
+    }
+}

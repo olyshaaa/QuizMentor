@@ -3,12 +3,15 @@
     border-radius: 0.85rem;
     cursor: pointer;
 
+    
+
     .moduleName{
         margin: 1.25rem;
         font-weight: 500;
     }
 
-    .terms{
+    .terms,
+    .author{
         margin: 1.25rem;
     }
     &:hover{
