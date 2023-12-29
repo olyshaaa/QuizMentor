@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     perspective: 1000px;
-    margin-top: 100px;
 
     .term,
     .definition{
@@ -35,14 +34,24 @@
 
     .navigation{
         display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         width: 100%;
         margin-top: 10px;
+        justify-content: center;
     }
 
     button{
+        margin-top: 10px;
+        margin-right: 5px;
         padding: 5px 10px;
         cursor: pointer;
+        border-radius: 0.55rem;
+        font-size: 18px;;
+        border: 1px solid #acacac;
+        background-color: rgba(255, 0, 0, 0);
+        &:hover{
+          border: 1px solid #4D20C0;
+        }
     }
 
     .card.show-term {
