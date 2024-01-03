@@ -8,7 +8,7 @@ const ModuleCard = ({moduleId, moduleName, cards, authorUsername}) =>{
     const navigateToModule = useNavigate()
     const handleClick = () =>{
         navigateToModule(`/card/${moduleId}`, {
-            state: {moduleId, moduleName, cards }
+            state: {moduleId, moduleName, cards, authorUsername: authorUsername }
         })
     }
 

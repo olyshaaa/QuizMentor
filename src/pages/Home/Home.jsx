@@ -5,6 +5,8 @@ import Add from './Add'
 import ModuleCard from "./ModuleCard/ModuleCard.jsx"
 
 import style from "./Home.module.scss"
+import { useSelector } from 'react-redux'
+import { selectFavourites } from '../../service/favouriteSlice.js'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -12,6 +14,8 @@ const Home = () => {
   const username = localStorage.getItem('username');
 
   const [data, setData] = useState([]);
+
+  const favourites = useSelector(selectFavourites)
 
   const handleLogout = async () =>{
     fetch("http://localhost:8080/logout", {
@@ -44,6 +48,17 @@ const Home = () => {
           <ModuleCard moduleId={index} {...moduleData}/>
           </div>
         ))}
+      </div>
+      <p className={style.favoriteTitle}>Favorites</p>
+      <div className={style.bannerWrapper}>
+
+          {favourites && console.log(favourites)}
+          <div className={style.moduleCardWrapper}>
+          {favourites && favourites.modules.map((moduleData, index) => (
+            <ModuleCard moduleId={index} {...moduleData}/>
+          ))}
+          </div>
+
       </div>
     </div>
   )
