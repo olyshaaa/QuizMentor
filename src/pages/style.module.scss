@@ -109,22 +109,17 @@ p{
 }
 
 @media screen and (max-width: 768px){
-    .wrapper {
-        /*  padding: 20px; */
-        width: 100%;
-        height: 900px;
-        margin-top: 200px;
-        position: relative;
-        top: 0;
-    }
     h2 {
-        font-size: 1.25rem;
-    };
+    }
     input {
         width: 250px;
     }
-    button{
-        width: 250px;
+}
+@media screen and (max-width: 500px){
+    .signup{
+        input {
+            width: 250px;
+        }
     }
 
 }

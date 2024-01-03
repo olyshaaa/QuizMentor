@@ -9,7 +9,7 @@
 .buttonWrapper{
     display: flex;
     justify-content: center;
-    
+
     button{
         margin-top: 10px;
             margin-right: 5px;
@@ -24,5 +24,11 @@
               border: 1px solid #4D20C0;
             }
 
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .title{
+        margin-left:11%;
     }
 }

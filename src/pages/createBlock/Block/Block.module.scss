@@ -54,3 +54,52 @@
         }
     }
 }
+
+@media screen and (max-width: 1476px) {
+    .blockWrapper{
+        width: 90%;
+        .term,
+        .definition{
+            width: 43%;
+        }
+    }
+    .addCardWrapper{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .blockWrapper{
+        width: 90%;
+        .term,
+        .definition{
+            width: 43%;
+        }
+    }
+}
+
+@media screen and (max-width: 690px){
+    .blockWrapper{
+        width: 70%;
+        .definition{
+            margin-top: 15px;
+        }
+    }
+    .addCardWrapper{
+        width: 70%;
+        margin-left: 20px;
+    }
+}
+
+@media  screen and (max-width: 540px) {
+    .blockWrapper{
+        .term,
+        .definition{
+            width: 100%;
+        }
+    }
+    .addCardWrapper{
+        width: 65%;
+        margin-left: 10px;
+    }
+}

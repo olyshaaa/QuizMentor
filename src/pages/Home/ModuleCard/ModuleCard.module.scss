@@ -3,8 +3,6 @@
     border-radius: 0.85rem;
     cursor: pointer;
 
-    
-
     .moduleName{
         margin: 1.25rem;
         font-weight: 500;
@@ -16,5 +14,11 @@
     }
     &:hover{
         border: 1px solid #4D20C0;
+    }
+}
+
+@media screen and (max-width: 429px){
+    .wrapper{
+        
     }
 }

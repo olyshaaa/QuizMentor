@@ -22,8 +22,7 @@
         font-size: 35px;
         color: #2E3856;
     }
-    .title,
-    .description{
+    .title{
         border: none;
         border-bottom: 2px solid black;
         width: 500px;
@@ -40,5 +39,21 @@
     .label{
         display: block;
         color: #939BB4;
+    }
+}
+
+@media screen and (max-width: 585px ){
+     .createBlockWrapper{
+        .title{
+            width: 300px;
+        }
+    }
+}
+
+@media screen and (max-width: 360px){
+    .createBlockWrapper{
+        .title{
+            width: 150px;
+        }
     }
 }

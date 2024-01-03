@@ -19,10 +19,8 @@ const CardDetail = () =>{
     const isModuleInFavourites = favourites.modules.some(item => item.moduleName === moduleName && item.authorUsername === authorUsername);
      const handleToggleFavourite = () =>{
       if(isModuleInFavourites){
-        console.log(isModuleInFavourites+ " ism delete")
         dispatch(removeFromFavourites({moduleName, authorUsername}))
       }else{
-        console.log(isModuleInFavourites+ " ism add")
         const storedFavourites = JSON.parse(localStorage.getItem("favourites")) || []
         const newFavourite = {moduleName, cards, authorUsername}
         dispatch(addToFavourite({moduleName, cards, authorUsername}))}

@@ -17,6 +17,7 @@ import store from './service/store.js'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App/>} >
+            <Route index element={<Navigate to='/login' />} />
             <Route path='signup' element={<Signup />} />
             <Route path='login' element={<Login />} />
             <Route element={<Protected />}>

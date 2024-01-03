@@ -19,14 +19,12 @@ const Block = ({blocks, onBlockChange}) => {
   const handleDefinitionChange = (event, index) =>{
     const updatedBlocks = [...localBlocks]
     updatedBlocks[index].definition = event.target.value
-    //setLocalBlocks(updatedBlocks)
     onBlockChange(updatedBlocks);
   }
 
   const addCard = () =>{
     console.log("Add card button clicked");
     const updatedBlocks = [...localBlocks, {term: '', definition: ''}]
-    //setLocalBlocks(updatedBlocks)
     onBlockChange(updatedBlocks);
   }
   return (

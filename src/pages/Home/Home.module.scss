@@ -3,7 +3,7 @@
     display: flex;
     margin-top: 100px;
     .addIcon{
-        width: 6%;
+        width: 30px;
         margin-left: 10px;
         margin-top: 14px;
     }
@@ -29,4 +29,20 @@
 
 .favoriteTitle{
     margin-left: 40px;
+}
+
+@media screen and (max-width: 850px) {
+    .bannerWrapper{
+        .moduleCardWrapper{
+            flex: 0 0 40%;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .bannerWrapper{
+        .moduleCardWrapper{
+            flex: 0 0 70%;
+        }
+    }
+
 }

@@ -34,7 +34,6 @@
 
     .navigation{
         display: flex;
-        /* justify-content: space-between; */
         width: 100%;
         margin-top: 10px;
         justify-content: center;
@@ -70,4 +69,10 @@
         box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.16);
       }
 
+}
+
+@media screen and (max-width: 906px) {
+  .sliderContainer{
+    
+  }
 }

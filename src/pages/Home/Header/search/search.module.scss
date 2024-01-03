@@ -10,3 +10,46 @@
         outline: none;
     }
 }
+
+@media screen and (max-width: 950px){
+    .search{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 852px){
+    .search{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .search{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .search{
+        margin-left: 25px;
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .search{
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 490px){
+    .search{
+        width: 150px;
+    }
+}
+
+@media  screen and (max-width:386px) {
+    .search{
+        width: 130px;
+    }
+}

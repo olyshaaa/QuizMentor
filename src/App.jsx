@@ -7,10 +7,13 @@ import { Outlet, useNavigate } from 'react-router-dom'
 
 function App() {
   const navigate = useNavigate()
+  const auth = localStorage.getItem("authenticated")
 
-  useEffect(()=>{
-    navigate('/login')
-  }, [navigate])
+  /* useEffect(()=>{
+    if (!auth){
+      navigate('/login')
+    }
+  }, [navigate]) */
   return (
     <>
       <div className='App'>
