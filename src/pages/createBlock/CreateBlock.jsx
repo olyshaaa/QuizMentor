@@ -9,7 +9,7 @@ const CreateBlock = () => {
 
   const username = localStorage.getItem('username');
   const handleLogout = async () =>{
-    fetch("http://localhost:8080/logout", {
+    fetch("https://quizmentorbackend.onrender.com/logout", {
       method: "POST",
     }).then(response =>{
       if(response.ok){
@@ -45,7 +45,7 @@ const CreateBlock = () => {
       setShow(true)
     }else{
     try{
-      const response = await fetch('http://localhost:8080/createModule',{
+      const response = await fetch('https://quizmentorbackend.onrender.com/createModule',{
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

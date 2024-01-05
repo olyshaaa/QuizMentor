@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import style from './style.module.scss'
 import Home from './Home/Home.jsx'
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-      const response = await fetch('http://localhost:8080/j_spring_security_check',{
+      const response = await fetch('https://quizmentorbackend.onrender.com/j_spring_security_check',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -41,7 +41,6 @@ const Login = () => {
 
   }
 
-
   return (
     <div className={style.wrapper}>
       <h2>QuizMentor</h2>
@@ -66,8 +65,7 @@ const Login = () => {
 
       </form>
        <p>Need to Signup ? <Link to='/signup'>Create an account</Link></p>
-       {errorParam && <p>Неправильное имя пользователя или пароль</p>}
-       <a href="http://localhost:8080/oauth2/authorization/google">login via google</a>
+       {errorParam && <p>Wrong username or password</p>}
     </div>
   )
 }

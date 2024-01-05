@@ -27,7 +27,7 @@ const CardDetail = () =>{
     }
     const username = localStorage.getItem('username');
     const handleLogout = async () =>{
-        fetch("http://localhost:8080/logout", {
+        fetch("https://quizmentorbackend.onrender.com/logout", {
           method: "POST",
         }).then(response =>{
           if(response.ok){

@@ -9,7 +9,7 @@ const Community = () =>{
     const [data, setData] = useState()
 
     const handleLogout = async () =>{
-        fetch("http://localhost:8080/logout", {
+        fetch("https://quizmentorbackend.onrender.com/logout", {
           method: "POST",
         }).then(response =>{
           if(response.ok){
@@ -21,7 +21,7 @@ const Community = () =>{
       }
 
       useEffect(()=>{
-        fetch("http://localhost:8080/modules/getALl")
+        fetch("https://quizmentorbackend.onrender.com/modules/getALl")
         .then(response => response.json())
         .then(data => setData(data))
       }, [])

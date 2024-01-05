@@ -18,10 +18,10 @@ const Home = () => {
   const favourites = useSelector(selectFavourites)
 
   const handleLogout = async () =>{
-    fetch("http://localhost:8080/logout", {
+    fetch("https://quizmentorbackend.onrender.com/logout", {
       method: "POST",
       headers: {
-        'Origin': 'http://localhost:5173',
+        'Origin': 'https://quiz-mentor.vercel.app',
       },
     }).then(response =>{
       if(response.ok){
@@ -34,7 +34,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:8080/modules/${username}`)
+    fetch(`https://quizmentorbackend.onrender.com/modules/${username}`)
     .then(response => response.json())
     .then((data) => setData(data))
   }, [])
@@ -58,7 +58,6 @@ const Home = () => {
             <ModuleCard moduleId={index} {...moduleData}/>
           ))}
           </div>
-
       </div>
     </div>
   )

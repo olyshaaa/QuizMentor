@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async (e) =>{
     e.preventDefault();
      try{
-      const response = await fetch("http://localhost:8080/newuser", {
+      const response = await fetch("https://quizmentorbackend.onrender.com/newuser", {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',
@@ -33,8 +33,6 @@ const Signup = () => {
     }catch(e){
       console.log('Registration failes:', e)
     }
-
-
   }
 
   return (
