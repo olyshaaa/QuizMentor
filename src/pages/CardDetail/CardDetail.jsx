@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../Home/Header/header'
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Slider from './Slider/Slider';
 
 import style from "./CardDetail.module.scss"
@@ -10,6 +10,8 @@ import { addToFavourite, removeFromFavourites, selectFavourites, setFavourites }
 const CardDetail = () =>{
     const {moduleId} = useParams()
     const location = useLocation()
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const favourites = useSelector(selectFavourites)

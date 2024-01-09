@@ -3,10 +3,12 @@ import Header from "../Home/Header/header";
 
 import style from "./Community.module.scss"
 import ModuleCard from "../Home/ModuleCard/ModuleCard";
+import { useNavigate } from "react-router-dom";
 
 const Community = () =>{
     const username = localStorage.getItem("username")
     const [data, setData] = useState()
+    const navigate = useNavigate()
 
     const handleLogout = async () =>{
         fetch("https://quizmentorbackend.onrender.com/logout", {
