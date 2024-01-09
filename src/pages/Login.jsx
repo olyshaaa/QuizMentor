@@ -32,13 +32,11 @@ const Login = () => {
        localStorage.setItem('authenticated', 'true');
         navigate("/home")
       }else if(response.status === 401){
-        console.log('Login failes')
         setIncorrectMessage(true)
       }
     }catch(e){
       console.log("Login failes:", e)
     }
-
   }
 
   return (
