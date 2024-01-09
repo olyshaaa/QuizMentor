@@ -52,9 +52,13 @@ const Home = () => {
       <p className={style.favoriteTitle}>Favorites</p>
       <div className={style.bannerWrapper}>
           <div className={style.moduleCardWrapper}>
-          {favourites && favourites.modules.map((moduleData, index) => (
-            <ModuleCard moduleId={index} {...moduleData}/>
-          ))}
+          {favourites && favourites.modules.length > 0 ? (
+             favourites.modules.map((moduleData, index) => (
+              <ModuleCard moduleId={index} {...moduleData} key={index} />
+      ))
+    ) : (
+          <p className={style.favouritesAvailable}>No favorites available</p>
+    )}
           </div>
       </div>
     </div>
