@@ -23,7 +23,6 @@ const Block = ({blocks, onBlockChange}) => {
   }
 
   const addCard = () =>{
-    console.log("Add card button clicked");
     const updatedBlocks = [...localBlocks, {term: '', definition: ''}]
     onBlockChange(updatedBlocks);
   }

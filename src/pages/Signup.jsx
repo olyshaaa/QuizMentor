@@ -31,7 +31,7 @@ const Signup = () => {
         setUsernameInuse(true)
       }
     }catch(e){
-      console.log('Registration failes:', e)
+      alert("Registration failed. Please try again")
     }
   }
 

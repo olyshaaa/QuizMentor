@@ -32,11 +32,9 @@ const SearchResult = () =>{
             navigate('/login')
           }
         })
-
       }
 
       useEffect(() => {
-        console.log("query changed" + query)
         const fetchData = async () => {
           try {
             const response = await fetch(`https://quizmentorbackend.onrender.com/search/${query}`);

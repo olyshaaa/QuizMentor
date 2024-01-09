@@ -35,7 +35,7 @@ const Login = () => {
         setIncorrectMessage(true)
       }
     }catch(e){
-      console.log("Login failes:", e)
+      alert("Login failes. Please try again")
     }
   }
 

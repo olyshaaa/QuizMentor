@@ -51,8 +51,6 @@ const Home = () => {
       </div>
       <p className={style.favoriteTitle}>Favorites</p>
       <div className={style.bannerWrapper}>
-
-          {favourites && console.log(favourites)}
           <div className={style.moduleCardWrapper}>
           {favourites && favourites.modules.map((moduleData, index) => (
             <ModuleCard moduleId={index} {...moduleData}/>

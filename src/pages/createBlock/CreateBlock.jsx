@@ -25,10 +25,6 @@ const CreateBlock = () => {
   const navigateToHome = useNavigate()
   const [show, setShow] = useState(false)
 
-  useEffect(()=>{
-    console.log(blocks)
-    console.log(blocks.length)
-  }, [blocks])
 
   const messageStyle = {
     display: show ? "block" : "none",
@@ -62,7 +58,7 @@ const CreateBlock = () => {
       }
     }
     catch(e){
-      console.log("creating block failes: ", e)
+      alert("Error while creating a module. Please try again")
     }
   }
   }
