@@ -27,7 +27,7 @@ const Login = () => {
         }),
       })
 
-      if(response.status === 304){
+      if(response.status === 200){
        localStorage.setItem("username", login)
        localStorage.setItem('authenticated', 'true');
         navigate("/home")
