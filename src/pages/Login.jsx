@@ -1,41 +1,43 @@
 import React, { useState } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
+
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase/firebase.js'
+
+
 import style from './style.module.scss'
-import Home from './Home/Home.jsx'
+
 const Login = () => {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [incorrectMessage, setIncorrectMessage] = useState(false)
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const errorParam = urlParams.get('error');
-
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try{
-      const response = await fetch('https://quizmentorbackend.onrender.com/j_spring_security_check',{
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          login: login,
-          password: password,
-        }),
+    const checkbox = document.getElementById('rememberme')
+    if (checkbox.checked){
+      await setPersistence(auth, browserLocalPersistence)
+      .then (data=> {
+        console.log('persistence')
+        signInWithEmailAndPassword(auth, login, password)
+        navigate('/home')
       })
-
-      if(response.status === 200){
-       localStorage.setItem("username", login)
-       localStorage.setItem('authenticated', 'true');
-        navigate("/home")
-      }else if(response.status === 401){
-        setIncorrectMessage(true)
-      }
-    }catch(e){
-      alert("Login failes. Please try again")
+    } else {
+      signInWithEmailAndPassword(auth, login, password).then(data => {
+        navigate('/home')
+      }).catch(error => {
+        switch(error.code){
+          case 'auth/invalid-credential':
+            setIncorrectMessage('Invalid email or password')
+          case 'auth/too-many-requests':
+            setIncorrectMessage('Too many tries')
+          default:
+          setIncorrectMessage('Failed to login')
+          console.log(error.code + ' error code')
+        }
+      })
     }
   }
 
@@ -58,12 +60,15 @@ const Login = () => {
         name="password"
         onChange={(e)=>setPassword(e.target.value)}
         />
-        <p className={incorrectMessage ? style.usernameInUse : style.hidden}>username or password is incorrect</p>
+        <p className={incorrectMessage ? style.usernameInUse : style.hidden}>{incorrectMessage}</p>
+        <label htmlFor="rememberme" className={style.rememberMe}>
+          <input type="checkbox" id='rememberme' name='rememberme' className={style.inputRememberMe}/>
+          remember me
+          </label>
         <button type='sumbit' className='login-button'>Login</button>
 
       </form>
        <p>Need to Signup ? <Link to='/signup'>Create an account</Link></p>
-       {errorParam && <p>Wrong username or password</p>}
     </div>
   )
 }

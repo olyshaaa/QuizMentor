@@ -61,6 +61,16 @@
         }
     }
 
+    .rememberMe{
+        display: flex;
+        align-items: center;
+        .inputRememberMe{
+            width: 25px;
+            height: 17px;
+            margin-right: 5px;
+        }
+    }
+
     button{
         border: none;
         background-color: #FFC673;

@@ -16,31 +16,9 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   const favourites = useSelector(selectFavourites)
-
-  const handleLogout = async () =>{
-    fetch("https://quizmentorbackend.onrender.com/logout", {
-      method: "POST",
-      headers: {
-        'Origin': 'https://quiz-mentor.vercel.app',
-      },
-    }).then(response =>{
-      if(response.ok){
-        localStorage.removeItem('username')
-        localStorage.removeItem('authenticated');
-        navigate('/login')
-      }
-    })
-
-  }
-
-  useEffect(() => {
-    fetch(`https://quizmentorbackend.onrender.com/modules/${username}`)
-    .then(response => response.json())
-    .then((data) => setData(data))
-  }, [])
   return (
     <div>
-      <Header username={username} handleLogout={handleLogout} />
+      <Header/>
       <Add />
       <div className={style.bannerWrapper}>
         {data.map((moduleData, index) => (

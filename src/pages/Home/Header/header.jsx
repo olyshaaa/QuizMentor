@@ -4,13 +4,22 @@ import Search from './search/search'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { auth } from '../../../firebase/firebase'
+import { signOut } from 'firebase/auth'
 
-const Header = ({username, handleLogout}) => {
+const Header = () => {
   //showing the profile menu
+  const username = auth.currentUser.displayName
   const [showOption, setShowOption] = useState(false)
   // profile menu but for mobiles
   const [showBar, setShowBar] = useState(false)
   const navigate = useNavigate()
+
+  const handleLogout = () => {
+    signOut(auth).then(data => {
+      navigate('/login')
+    })
+  }
 
   const handleLogoClick = () =>{
     navigate("/home")
