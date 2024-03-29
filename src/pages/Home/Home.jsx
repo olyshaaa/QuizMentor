@@ -7,11 +7,18 @@ import ModuleCard from "./ModuleCard/ModuleCard.jsx"
 import style from "./Home.module.scss"
 import { useSelector } from 'react-redux'
 import { selectFavourites } from '../../service/favouriteSlice.js'
+import { auth } from '../../firebase/firebase.js'
+import { getDatabase, ref } from 'firebase/database'
 
 const Home = () => {
-  const navigate = useNavigate()
 
-  const username = localStorage.getItem('username');
+  useEffect(()=>{
+    /* const uid = auth.currentUser.uid
+    console.log('current user uid ' + uid)
+    const userdararef = ref(getDatabase(), `UserData/${uid}/cards`)
+    console.log(userdararef)
+    console.log('cards ' + userdararef.length) */
+  }, [])
 
   const [data, setData] = useState([]);
 

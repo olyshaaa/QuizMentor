@@ -13,6 +13,7 @@ import Community from './pages/Community/Community.jsx'
 import SearchResult from './pages/SearchResult/SearchResult.jsx'
 import { Provider } from 'react-redux'
 import store from './service/store.js'
+import { AuthContext } from './firebase/authContext.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -20,18 +21,18 @@ const router = createBrowserRouter(
             <Route index element={<Navigate to='/login' />} />
             <Route path='signup' element={<Signup />} />
             <Route path='login' element={<Login />} />
-            <Route element={<Protected />}>
-                <Route path='home' element={<Home />} exact/>
-                <Route path='createBlock' element={<CreateBlock />}/>
-                <Route path='card/:moduleId' element={<CardDetail />} />
-                <Route path='/community' element={<Community />}/>
-                <Route path='/search' element={<SearchResult />}/>
-            </Route>
+                <Route path='home' element={<Protected><Home/></Protected>} exact/>
+                <Route path='createBlock' element={<Protected><CreateBlock /></Protected>}/>
+                <Route path='card/:moduleId' element={<Protected><CardDetail /></Protected>} />
+                <Route path='/community' element={<Protected><Community /></Protected>}/>
+                <Route path='/search' element={<Protected><SearchResult /></Protected>}/>
         </Route>
     )
 )
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <Provider store={store}>
-        <RouterProvider router={router} />
-    </Provider>
+    <AuthContext>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    </AuthContext>
 )

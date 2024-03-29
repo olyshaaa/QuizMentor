@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, getAuth, setPersistence, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { useNavigate, Link } from 'react-router-dom'
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import style from './style.module.scss'
 
 
@@ -14,37 +14,44 @@ const Signup = () => {
 
   const navigate = useNavigate()
 
-    const handleSubmit = (e) =>{
-      e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password, username).then(data=>{
-          updateProfile(auth.currentUser, {
-            displayName: username
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password, username).then(data => {
+      updateProfile(auth.currentUser, {
+        displayName: username
+      }).then(() => {
+        const uid = auth.currentUser.uid;
+        const userDataRef = ref(getDatabase(), `UserData/${uid}`);
+        const userData = {
+          username: username,
+          email: email,
+        };
+        set(userDataRef, userData)
+          .then(() => {
+            console.log("User data successfully written!");
+            console.log(auth.currentUser.uid)
+            navigate('/login');
           })
-          console.log(auth.currentUser)
-          const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/jaon'
-            },
-            body: JSON.stringify({username, email})
-          }
-          const res = fetch('https://quizmentor-1fe6b-default-rtdb.firebaseio.com/UserData.json', options)
-
-          navigate('/login')
-        }).catch(error => {
-          switch (error.code) {
-            case 'auth/email-already-in-use':
-              setIncorrectMessage('The email address is already in use.');
-              break;
-            case 'auth/weak-password':
-              console.log('catch!')
-              setIncorrectMessage('The password is too weak.');
-              break;
-            default:
-              setIncorrectMessage('An error occurred while signing up.');
-          }
-        })
+          .catch(error => {
+            console.error("Error writing user data: ", error);
+            setIncorrectMessage('An error occurred while signing up.');
+          });
+      });
+    }).catch(error => {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          setIncorrectMessage('The email address is already in use.');
+          break;
+        case 'auth/weak-password':
+          console.log('catch!')
+          setIncorrectMessage('The password is too weak.');
+          break;
+        default:
+          setIncorrectMessage('An error occurred while signing up.');
+      }
+    })
   }
+
 
   return (
     <div className={style.wrapper}>

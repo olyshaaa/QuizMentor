@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import Header from '../Home/Header/header'
 import style from './CreateBlock.module.scss'
 import Block from './Block/Block'
 import { useNavigate } from 'react-router-dom'
+import { getDatabase, ref, set, push } from "firebase/database";
 
 const CreateBlock = () => {
   const navigate = useNavigate()
 
   const username = localStorage.getItem('username');
-  const handleLogout = async () =>{
-    fetch("https://quizmentorbackend.onrender.com/logout", {
-      method: "POST",
-    }).then(response =>{
-      if(response.ok){
-        localStorage.removeItem('username')
-        localStorage.removeItem("authenticated")
-        navigate("/login")
-      }
-    })
-  }
 
   const [blocks, setBlocks] = useState([]);
   const [title, setTitle] = useState('')
@@ -37,34 +27,17 @@ const CreateBlock = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    if(blocks.length <=2){
-      setShow(true)
-    }else{
-    try{
-      const response = await fetch('https://quizmentorbackend.onrender.com/createModule',{
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          moduleName: title,
-          cards: blocks,
-          authorUsername: username,
-        })
-      })
-      if(response.ok){
-        navigateToHome("/home")
-      }
-    }
-    catch(e){
-      alert("Error while creating a module. Please try again")
-    }
-  }
+    const uid = localStorage.getItem('uid')
+    const db = getDatabase()
+    const cardsref = ref(db, `UserData/${uid}/cards`)
+   push(cardsref, {
+    title: title,
+    ...blocks
+  })
   }
   return (
     <>
-        <Header username={username} handleLogout={handleLogout}/>
+        <Header />
         <div className={style.createBlockWrapper}>
           <p className={style.blockTitle}>Create a new study block</p>
           <form onSubmit={handleSubmit} action="">

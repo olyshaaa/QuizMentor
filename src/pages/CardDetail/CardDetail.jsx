@@ -27,17 +27,6 @@ const CardDetail = () =>{
         const newFavourite = {moduleName, cards, authorUsername}
         dispatch(addToFavourite({moduleName, cards, authorUsername}))}
     }
-    const username = localStorage.getItem('username');
-    const handleLogout = async () =>{
-        fetch("https://quizmentorbackend.onrender.com/logout", {
-          method: "POST",
-        }).then(response =>{
-          if(response.ok){
-            localStorage.removeItem('username')
-            navigate("/login")
-          }
-        })
-      }
     return(
         <>
             <Header username={username} handleLogout={handleLogout} />

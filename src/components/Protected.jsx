@@ -1,12 +1,15 @@
- import React from 'react'
+ import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { auth } from '../firebase/firebase'
+import { Context } from '../firebase/authContext'
 
-const Protected = () => {
-  const { currentUser } = auth
-  return (
-    currentUser ? <Outlet /> : <Navigate to="/login" />
-  )
+const Protected = ({children}) => {
+  const {user} = useContext(Context)
+
+  if (!user){
+    return <Navigate to='/login' />
+  } else{
+    return children
+  }
 }
 
 export default Protected

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 
-import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { browserLocalPersistence, browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase/firebase.js'
 
 
@@ -14,18 +14,9 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    const checkbox = document.getElementById('rememberme')
-    if (checkbox.checked){
-      await setPersistence(auth, browserLocalPersistence)
-      .then (data=> {
-        console.log('persistence')
-        signInWithEmailAndPassword(auth, login, password)
-        navigate('/home')
-      })
-    } else {
-      signInWithEmailAndPassword(auth, login, password).then(data => {
+    signInWithEmailAndPassword(auth, login, password).then(data => {
         navigate('/home')
       }).catch(error => {
         switch(error.code){
@@ -38,7 +29,6 @@ const Login = () => {
           console.log(error.code + ' error code')
         }
       })
-    }
   }
 
   return (
@@ -47,7 +37,7 @@ const Login = () => {
       <h1 className={style.title}>Login</h1>
       <form onSubmit={handleSubmit} className={style.signup}>
         <input type="text"
-        placeholder='Username'
+        placeholder='Email'
         required
         value={login}
         name="username"

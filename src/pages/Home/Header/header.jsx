@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import style from './header.module.scss'
 import Search from './search/search'
 import { useNavigate } from 'react-router-dom'
@@ -6,10 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../../../firebase/firebase'
 import { signOut } from 'firebase/auth'
+import { Context } from '../../../firebase/authContext'
 
 const Header = () => {
-  //showing the profile menu
-  const username = auth.currentUser.displayName
+  const {user} = useContext(Context)
+  console.log(user)
+  const username = user ? user.displayName : "";
+  console.log('from header' + user.uid)
+  localStorage.setItem('uid', user.uid)
+
   const [showOption, setShowOption] = useState(false)
   // profile menu but for mobiles
   const [showBar, setShowBar] = useState(false)
